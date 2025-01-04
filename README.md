@@ -63,6 +63,10 @@ Example routine (`Templates/Routines/Morning.md`):
 	2.	Create a new branch for your feature or bugfix.
 	3.	Submit a pull request.
 
+## Enjoy the plugin?
+Help me focus on future development. 
+buymeacoffee.com/bcwilsondotcom
+
 ## License
 
 MIT License © 2025 Brandon Wilson
