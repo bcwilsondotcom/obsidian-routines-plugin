@@ -1,94 +1,89 @@
-# Obsidian Sample Plugin
+Here’s the updated README.md file for your project:
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+# Obsidian Routines Plugin
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+A plugin for [Obsidian](https://obsidian.md) that helps you manage and follow routines directly within your vault. Inspired by tools like Routinery, this plugin offers timers, logging, and step-by-step guidance for your routines.
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+## Features
 
-## First time developing plugins?
+- **Routine Creation**: Define multiple routines (e.g., Morning, Workout) with customizable steps.
+- **Timer with Visual Feedback**: A circular timer tracks progress for the current step and total routine time.
+- **Routine Logging**:
+  - Log routine progress to Markdown files or integrate with periodic notes.
+  - Include details like planned time, actual time, and skipped steps.
+- **Obsidian Integration**:
+  - Store routines as Markdown files.
+  - Use Obsidian's Templater plugin for dynamic routine templates.
+- **Debug Mode**: Enable debug logs for troubleshooting.
 
-Quick starting guide for new plugin devs:
+## Installation
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+1. Download the latest release from the [Releases](https://github.com/your-repo-name/releases) page.
+2. Copy the `dist` folder into your Obsidian vault under `.obsidian/plugins/obsidian-routines-plugin/`.
+3. Enable the plugin in Obsidian under **Settings → Community Plugins**.
 
-## Releasing new releases
+## Usage
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+### 1. Create a Routine
+1. Go to the plugin's settings (**Settings → Obsidian Routines Plugin**).
+2. Click "Add Routine" and configure the following:
+   - **Routine Name**: Name of the routine.
+   - **Template Path**: Path to the Markdown file containing routine steps.
+   - **Routine Log**: Choose how logs are stored:
+     - None: No logging.
+     - File: Logs to a specified Markdown file.
+     - Periodic: Logs into periodic notes (daily, weekly, etc.).
+   - **Log File Template**: For file-based logs, specify a path like `Routine Logs/<RoutineName> YYYY-MM-DD.md`.
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+### 2. Define Steps in the Routine Template
+Example template (`Templates/Routines/Morning.md`):
+```markdown
+- [ ] Make bed - 00:10:00
+- [ ] Stretch - 00:05:00
+- [ ] Meditate - 00:15:00
 
-## Adding your plugin to the community plugin list
+3. Start a Routine
+	1.	Open the Routines Panel using the command palette (Cmd/Ctrl + P) or the ribbon icon.
+	2.	Select a routine and click the “Start” button.
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+4. Log Your Progress
+	•	Logs include:
+	•	Steps with planned time, actual time, and skipped status.
+	•	Statistics like total planned vs. actual time.
+	•	Logs are automatically saved to the specified file or periodic note.
 
-## How to use
+Configuration
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+Settings
+	•	Routines: Manage routines with settings for name, template, and logging.
+	•	Debug Mode: Logs additional details to the console for debugging.
 
-## Manually installing the plugin
+File Logging
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+Logged files contain:
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
+# Routine Name
+## Date and Time
 
-## Funding URL
+- [x] Make bed - Planned: 00:10:00 - Actual: 00:09:30
+- [x] Stretch - Planned: 00:05:00 - Actual: 00:05:10
+- [ ] Meditate - Planned: 00:15:00 - Actual: Incomplete
 
-You can include funding URLs where people who use your plugin can financially support it.
+### Statistics
+- Total Planned: 00:30:00
+- Total Actual: 00:14:40
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+Roadmap
+	•	Add logging to periodic notes.
+	•	Visual improvements to the timer panel.
+	•	Export and import routine configurations.
+	•	Integration with Templater variables.
 
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
-```
+Contributing
+	1.	Fork the repository.
+	2.	Create a new branch for your feature or bugfix.
+	3.	Submit a pull request.
 
-If you have multiple URLs, you can also do:
+License
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
-
-## API Documentation
-
-See https://github.com/obsidianmd/obsidian-api
+MIT License © 2025 Brandon Wilson
