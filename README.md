@@ -65,7 +65,8 @@ Example routine (`Templates/Routines/Morning.md`):
 
 ## Enjoy the plugin?
 Help me focus on future development. 
-buymeacoffee.com/bcwilsondotcom
+
+https://buymeacoffee.com/bcwilsondotcom
 
 ## License
 
