@@ -14,6 +14,7 @@ A plugin for [Obsidian](https://obsidian.md) that helps you manage and follow ro
   - Log routine progress to Markdown files
   - Integrate with Periodic Notes (write logs to daily notes, weekly notes, etc.)
   - Include details like planned time, actual time, and skipped steps.
+
 **Templater**:
   - Integrate with Templater for dynamic routine templates.
 
