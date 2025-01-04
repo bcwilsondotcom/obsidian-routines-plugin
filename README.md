@@ -1,6 +1,6 @@
 # Obsidian Routines Plugin
 
-A plugin for [Obsidian](https://obsidian.md) that helps you manage and follow routines directly within your vault. Inspired by tools like Routinery, this plugin offers timers, logging, and step-by-step guidance for your routines.
+A plugin for [Obsidian](https://obsidian.md) that helps you manage and follow routines directly within your vault. This plugin offers timers, logging, and step-by-step guidance for your routines.
 
 ## Features Implemented
 
