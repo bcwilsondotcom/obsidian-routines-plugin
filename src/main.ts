@@ -5,8 +5,6 @@ import { RoutinesPanelView, VIEW_TYPE_ROUTINES_PANEL } from "./routines-panel-vi
 
 import RoutinesPluginSettingsTab from "./settings-tab";
 
-//  <== import from separate file
-
 export interface RoutineConfig {
   id: string;
   name: string;
@@ -69,17 +67,17 @@ export default class RoutinesPlugin extends Plugin {
     await this.saveData(this.settings);
   }
 
-  public debugLog(msg: string) {
-    if (this.settings.debugMode) {
-      console.log(`[RoutinesPlugin] DEBUG: ${msg}`);
-    }
-  }
-
   public createNewRoutine(): RoutineConfig {
     return {
       id: crypto.randomUUID(),
       name: "New Routine",
       templateFilePath: "",
     };
+  }
+
+  public debugLog(msg: string) {
+    if (this.settings.debugMode) {
+      console.log(`[RoutinesPlugin] DEBUG: ${msg}`);
+    }
   }
 }

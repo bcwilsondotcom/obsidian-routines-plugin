@@ -9,7 +9,7 @@ A plugin for [Obsidian](https://obsidian.md) that helps you manage and follow ro
 - **Timer with Visual Feedback**: A circular timer tracks progress for the current step and total routine time.
 - **Debug Mode**: Enable debug logs for troubleshooting.
 
-## Feature ToDo List
+## Feature To-Do List
 **Routine Logging**:
   - Log routine progress to Markdown files
   - Integrate with Periodic Notes (write logs to daily notes, weekly notes, etc.)
@@ -20,26 +20,21 @@ A plugin for [Obsidian](https://obsidian.md) that helps you manage and follow ro
 
 ## Installation
 
-1. Download the latest release from the [Releases](https://github.com/your-repo-name/releases) page.
-2. Copy the files into your Obsidian vault under `.obsidian/plugins/obsidian-routines-plugin/`.
+1. Download the latest release from the [Releases](https://github.com/bcwilsondotcom/obsidian-routines-plugin/releases) page.
+2. Copy the main.js, main.css, and manifest.json files into your Obsidian vault under `.obsidian/plugins/obsidian-routines-plugin/`.
 3. Enable the plugin in Obsidian under **Settings → Community Plugins**.
 
-Note that this plugin is still very new and I haven't submitted it to the official list yet. Planning to do that once I get the logging implemented the way I want.
+Note that this plugin is still very new and I haven't submitted it to the official list yet. Planning to do that once I get the logging implemented.
 
 ## Usage
 
 ### 1. Create a Routine
 1. Go to the plugin's settings (**Settings → Obsidian Routines Plugin**).
-2. Click "Add Routine" and configure the following:
+2. Click "Add" and configure the following:
    - **Routine Name**: Name of the routine.
-   - **Template Path**: Path to the Markdown file containing routine steps.
-   - **Routine Log**: Choose how logs are stored:
-     - None: No logging.
-     - File: Logs to a specified Markdown file. (Does not currently work)
-     - Periodic: Logs into periodic notes (daily, weekly, etc.). (Does not currently work)
-   - **Log File Template**: For file-based logs, specify a path like `Routine Logs/<RoutineName> YYYY-MM-DD.md`.
+   - **Routine File Location**: Path to the Markdown file containing routine steps.
 
-### 2. Define Steps in the Routine Template
+### 2. Define Steps in the Routine File
 
 Routine files are added as tasks with the following format.
 
@@ -55,7 +50,7 @@ Example routine (`Templates/Routines/Morning.md`):
 ```
 
 3. Start a Routine
-	1.	Open the Routines Panel using the command palette (Cmd/Ctrl + P) or the ribbon icon.
+	1.	Open the Routines Panel using the command palette (Cmd/Ctrl + P).
 	2.	Select a routine and click the “Start” button.
 
 ## Contributing
@@ -64,10 +59,8 @@ Example routine (`Templates/Routines/Morning.md`):
 	3.	Submit a pull request.
 
 ## Enjoy the plugin?
-Help me focus on future development. 
-
+Help me focus on future development.
 https://buymeacoffee.com/bcwilsondotcom
 
 ## License
-
 MIT License © 2025 Brandon Wilson

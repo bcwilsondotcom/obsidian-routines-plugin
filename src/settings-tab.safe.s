@@ -1,4 +1,5 @@
 // src/settings-tab.ts
+
 import { App, PluginSettingTab, Setting } from "obsidian";
 
 import type { RoutineConfig } from "./main";
@@ -13,41 +14,13 @@ export default class RoutinesPluginSettingsTab extends PluginSettingTab {
 
   display(): void {
     const { containerEl } = this;
-    containerEl.empty(); // Clear the container
+    containerEl.empty(); // Clear the container using Obsidian's empty()
 
-    // 1) Inject custom CSS directly in TS
-    const css = `
-      /* Example: remove bottom borders from each Setting inside .routine-box */
-      .routine-box .setting-item {
-        border: none !important;
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
-      }
-      .routine-box {
-        /* Add a faint border or any styling you like */
-        border: 1px solid var(--background-modifier-border);
-        padding: 10px;
-        margin-bottom: 15px;
-        border-radius: 5px;
-      }
-    `;
-    // Append only once to avoid duplicates
-    if (!document.head.querySelector("#routines-plugin-style")) {
-      const styleEl = document.createElement("style");
-      styleEl.id = "routines-plugin-style";
-      styleEl.textContent = css;
-      document.head.appendChild(styleEl);
-    }
-
-    // 2) Main header
     containerEl.createEl("h1", { text: "Routines" });
-
-    // 3) For each routine, create settings in a new .routine-box
     this.plugin.settings.routines.forEach((routine: RoutineConfig, index: number) => {
       this.createRoutineSetting(containerEl, routine, index);
     });
 
-    // 4) Add New Routine button
     new Setting(containerEl)
       .setName("Add New Routine")
       .addButton((btn) =>
@@ -60,13 +33,13 @@ export default class RoutinesPluginSettingsTab extends PluginSettingTab {
               name: "New Routine",
               templateFilePath: "",
             };
+
             this.plugin.settings.routines.push(newRoutine);
             await this.plugin.saveSettings();
             this.display();
           })
       );
 
-    // 5) Debug Mode at the bottom
     new Setting(containerEl)
       .setName("Debug Mode")
       .setDesc("If enabled, extra debug logs appear in the console.")
@@ -82,12 +55,9 @@ export default class RoutinesPluginSettingsTab extends PluginSettingTab {
   }
 
   private createRoutineSetting(containerEl: HTMLElement, routine: RoutineConfig, index: number): void {
-    // Create a container for each routine’s settings
-    const routineBox = (containerEl as unknown as any).createDiv({ cls: "routine-box" });
-
-    // Routine Name + Delete Button
-    new Setting(routineBox)
-      .setName("Routine Name")
+      const routineDiv = (containerEl as unknown as any).createDiv({ cls: "routine-setting-item" });
+      new Setting(routineDiv)
+        .setName("Routine Name")
       .addExtraButton((btn) => {
         btn.setIcon("trash").setTooltip("Delete Routine").onClick(async () => {
           this.plugin.settings.routines.splice(index, 1);
@@ -105,8 +75,7 @@ export default class RoutinesPluginSettingsTab extends PluginSettingTab {
           });
       });
 
-    // Routine File Location
-    new Setting(routineBox)
+    new Setting(routineDiv)
       .setName("Routine File Location")
       .setDesc("Path to a routine markdown file.")
       .addText((text) => {

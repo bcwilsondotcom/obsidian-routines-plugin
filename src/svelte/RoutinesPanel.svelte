@@ -255,7 +255,7 @@
     {:else}
       <p>Select a routine:</p>
       <select bind:value={selectedRoutineId} on:change={onSelectRoutine}>
-        <option value="">--Pick One--</option>
+        <option value="">Select Routine</option>
         {#each plugin.settings.routines as r}
           <option value={r.id}>{r.name}</option>
         {/each}
