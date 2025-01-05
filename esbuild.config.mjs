@@ -29,8 +29,16 @@ function copyAssetsPlugin() {
           path.join(rootDir, "manifest.json"),
           path.join(distDir, "manifest.json")
         );
-
         console.log("Copied manifest.json to dist/");
+
+        // Copy alert.mp3
+        const mp3Source = path.join(rootDir, "src", "assets", "alert.mp3");
+        if (fs.existsSync(mp3Source)) {
+          fs.copyFileSync(mp3Source, path.join(distDir, "alert.mp3"));
+          console.log("Copied alert.mp3 to dist/");
+        } else {
+          console.warn("alert.mp3 not found, skipping copy.");
+        }
       });
     },
   };
@@ -57,7 +65,8 @@ await esbuild.build({
   },
   plugins: [
     svelte({
-      compilerOptions: { css: true },
+      // Fix the deprecated css: boolean by using "injected"
+      compilerOptions: { css: "injected" },
       preprocess: sveltePreprocess(),
     }),
     copyAssetsPlugin(),
