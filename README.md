@@ -21,10 +21,10 @@ A plugin for [Obsidian](https://obsidian.md) that helps you manage and follow ro
 ## Installation
 
 1. Download the latest release from the [Releases](https://github.com/bcwilsondotcom/obsidian-routines-plugin/releases) page.
-2. Copy the main.js, main.css, and manifest.json files into your Obsidian vault under `.obsidian/plugins/obsidian-routines-plugin/`.
+2. Copy the main.js and manifest.json files into your Obsidian vault under `.obsidian/plugins/obsidian-routines-plugin/`.
 3. Enable the plugin in Obsidian under **Settings → Community Plugins**.
 
-Note that this plugin is still very new and I haven't submitted it to the official list yet. Planning to do that once I get the logging implemented.
+Note that this plugin is still very new and I haven't submitted it to the official list yet. Planning to do that once I get logging implemented.
 
 ## Usage
 

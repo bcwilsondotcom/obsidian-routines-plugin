@@ -1,7 +1,7 @@
 {
   "id": "obsidian-routines-plugin",
   "name": "Routines",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "minAppVersion": "1.0.0",
   "description": "Create and manage routines in Obsidian, including optional logs, daily notes, and more.",
   "author": "Brandon Wilson",

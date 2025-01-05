@@ -43,9 +43,11 @@ export default class RoutinesPluginSettingsTab extends PluginSettingTab {
     containerEl.createEl("h1", { text: "Routines" });
 
     // 3) For each routine, create settings in a new .routine-box
-    this.plugin.settings.routines.forEach((routine: RoutineConfig, index: number) => {
-      this.createRoutineSetting(containerEl, routine, index);
-    });
+    this.plugin.settings.routines.forEach(
+      (routine: RoutineConfig, index: number) => {
+        this.createRoutineSetting(containerEl, routine, index);
+      }
+    );
 
     // 4) Add New Routine button
     new Setting(containerEl)
@@ -66,6 +68,37 @@ export default class RoutinesPluginSettingsTab extends PluginSettingTab {
           })
       );
 
+    // --- Additional Settings for Audio Alerts ---
+    new Setting(containerEl)
+      .setName("Enable Alert Audio")
+      .setDesc("Play an alert sound when the step time is exceeded.")
+      .addToggle((toggle) =>
+        toggle
+          .setValue(this.plugin.settings.enableAlertAudio ?? false)
+          .onChange(async (value: boolean) => {
+            this.plugin.settings.enableAlertAudio = value;
+            await this.plugin.saveSettings();
+            // Re-render to show/hide the path field
+            this.display();
+          })
+      );
+
+    // Only show audio path field if the toggle is ON
+    if (this.plugin.settings.enableAlertAudio) {
+      new Setting(containerEl)
+        .setName("Alert Audio Path")
+        .setDesc("Path to the alert .mp3 file (local or vault path).")
+        .addText((text) =>
+          text
+            .setPlaceholder("./alert.mp3")
+            .setValue(this.plugin.settings.alertAudioPath ?? "")
+            .onChange(async (value) => {
+              this.plugin.settings.alertAudioPath = value;
+              await this.plugin.saveSettings();
+            })
+        );
+    }
+
     // 5) Debug Mode at the bottom
     new Setting(containerEl)
       .setName("Debug Mode")
@@ -81,9 +114,15 @@ export default class RoutinesPluginSettingsTab extends PluginSettingTab {
       );
   }
 
-  private createRoutineSetting(containerEl: HTMLElement, routine: RoutineConfig, index: number): void {
+  private createRoutineSetting(
+    containerEl: HTMLElement,
+    routine: RoutineConfig,
+    index: number
+  ): void {
     // Create a container for each routine’s settings
-    const routineBox = (containerEl as unknown as any).createDiv({ cls: "routine-box" });
+    const routineBox = (containerEl as unknown as any).createDiv({
+      cls: "routine-box",
+    });
 
     // Routine Name + Delete Button
     new Setting(routineBox)
@@ -96,13 +135,12 @@ export default class RoutinesPluginSettingsTab extends PluginSettingTab {
         });
       })
       .addText((text) => {
-        text
-          .setPlaceholder("Routine Name")
-          .setValue(routine.name)
-          .onChange(async (value) => {
+        text.setPlaceholder("Routine Name").setValue(routine.name).onChange(
+          async (value) => {
             routine.name = value;
             await this.plugin.saveSettings();
-          });
+          }
+        );
       });
 
     // Routine File Location
